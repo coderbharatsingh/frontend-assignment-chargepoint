@@ -1,0 +1,115 @@
+.container {
+    max-width: 100%;
+    width: 800px;
+    margin: auto;
+    padding: 20px 15px;
+    justify-items: center;
+
+    .row {
+        display: flex;
+
+        .col {
+            flex:1 1 auto;
+        }
+    }
+
+    .map-area {
+        display: flex;
+        margin-bottom: 15px;
+
+        .map-parent {
+            width: 300px;
+        }
+
+        .vehicle-info {
+            width: 500px;
+            padding: 10px 15px;
+            align-self: center;
+        
+            .pause-btn {
+                margin-top: 15px;
+                border: 2px solid #0ad;
+                border-radius: 5px;
+                background: #fff;
+                padding: 5px 10px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                
+                &:hover {
+                    transform: scale(1.03);
+                    box-shadow: 2px 2px 5px #888;;
+                }
+            }
+        }
+    }
+
+    .detail-box {
+        margin-bottom: 15px;
+        
+        .title {
+            margin-bottom: 10px;
+        }
+    }
+
+    .status-box {
+        display: flex;
+        margin-bottom: 15px;
+        align-items: center;
+
+        .car-status {
+            border-radius: 50%;
+            height: 15px;
+            width: 15px;
+            margin-right: 10px;
+
+            &.blink {
+                background: blue;
+                animation: blink 0.5s infinite;
+            }
+
+            &.green {
+                background: green;
+            }
+
+            &.red {
+                background: red;
+            }
+
+            &.red-blink {
+                background: red;
+                animation: blink 0.5s infinite;
+            }
+        }
+    }
+
+    .progress-bar {
+        display: block;
+        height: 25px;
+        border: 1px solid #555;
+
+        .text {
+            background: #999;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0px 15px;
+            box-sizing: border-box;
+            white-space: nowrap;
+            transition: width 0.2s ease-in;
+        }
+    }
+
+    .chart-section {
+        margin-bottom: 15px;
+    }
+}
+
+@keyframes blink {
+    from {
+        transform: scale(0);
+    }
+    
+    to {
+        transform: scale(1);
+    }
+}

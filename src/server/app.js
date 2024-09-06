@@ -1,6 +1,8 @@
 const express       = require("express")
 const http          = require("http")
 const WebSocket     = require("ws")
+const path			= require('path')
+require('dotenv').config();
 
 // Broadcaster is a class that emit event when a new datapoint arrive
 // This is just an emulation of real life situation where datapoint came in randomly
@@ -15,13 +17,19 @@ const httpServer = http.createServer(app)
 app
 	.set("views", `${process.cwd()}/src/server/views`)
 	.set("view engine", "pug")
-	.use(express.static(`${process.cwd()}/src/client`))
+	.use(express.static(`${process.cwd()}/dist`))
 
 // Render index.pug from views for root URL
 app
 	.get("/", (req, res) => {
 		res.render("index")
 	})
+
+if (process.env.NODE_ENV === 'production') {
+	app.get('*', (req, res) => {
+		res.sendFile(path.join(__dirname, '../../dist', 'index.html'));
+	});
+}
 
 // Initiate websocket server with the same server as express
 const wss = new WebSocket.Server({ server: httpServer })
@@ -38,9 +46,10 @@ broadcaster.on("data", (data) => {
 	})
 })
 
-// Start listening on port 3000 for both express app and WS server
-httpServer.listen(3000, () => {
-	console.log("HTTP server listening on port 3000")
+// Start listening on same port for both express app and WS server
+const port = process.env.PORT || 5000;
+httpServer.listen(port, () => {
+	console.log("HTTP server listening on port " + port)
 })
 
 

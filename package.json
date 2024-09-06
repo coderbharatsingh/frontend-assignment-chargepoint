@@ -4,14 +4,36 @@
   "description": "![ ](https://imgs.xkcd.com/comics/code_quality_3.png)",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server/app.js"
+    "start": "NODE_ENV=production node src/server/app.js",
+    "dev:client": "vite",
+    "dev:server": "nodemon src/server/app.js",
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "build": "vite build",
+    "serve": "npm run build && npm run start"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "concurrently": "^8.2.2",
     "csv-parse": "^4.0.1",
+    "dotenv": "^16.4.5",
     "express": "^4.16.4",
+    "nodemon": "^3.1.4",
     "pug": "^2.0.3",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.3",
     "ws": "^6.1.2"
+  },
+  "dependencies": {
+    "@react-google-maps/api": "^2.19.3",
+    "chart.js": "^4.4.4",
+    "react": "^18.3.1",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.3.1",
+    "react-use-websocket": "^4.8.1",
+    "sass": "^1.78.0"
   }
 }
