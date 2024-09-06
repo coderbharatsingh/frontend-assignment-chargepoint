@@ -17,8 +17,9 @@ export interface LineChartProps {
 }
 
 const LineChart: React.FC<LineChartProps> = (props) => {
+    const visibleResultsOnChart = 200; // We can increase or decrease the number of input result data for chart view
     const [data, setData] = useState<DataProps>({
-      labels: [], // Time labels
+      labels: [],
       datasets: [
         {
           label: props.yLabel,
@@ -29,17 +30,15 @@ const LineChart: React.FC<LineChartProps> = (props) => {
         },
       ],
     });
-
-    
     
     useEffect(() => {
       if(props.yVal) {
         setData(((prevData) => ({
-          labels: [...prevData.labels, props.xVal].slice(-200),
+          labels: [...prevData.labels, props.xVal].slice(-visibleResultsOnChart),
           datasets: [
             {
               ...prevData.datasets[0],
-              data: [...prevData.datasets[0].data, { yData: props.yVal, xData: props.xVal }].slice(-200),
+              data: [...prevData.datasets[0].data, { yData: props.yVal, xData: props.xVal }].slice(-visibleResultsOnChart),
             },
           ],
         })));

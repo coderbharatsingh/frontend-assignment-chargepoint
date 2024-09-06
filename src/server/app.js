@@ -1,7 +1,7 @@
 const express       = require("express")
 const http          = require("http")
 const WebSocket     = require("ws")
-const path			= require('path')
+const path			= require('path');
 require('dotenv').config();
 
 // Broadcaster is a class that emit event when a new datapoint arrive
